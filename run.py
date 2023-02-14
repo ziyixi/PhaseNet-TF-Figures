@@ -2,6 +2,7 @@ from phasenettf.scripts import *
 import sys
 
 scripts_mapper = {
+    "station_distribution":station_distribution_main
 }
 
 
