@@ -34,8 +34,8 @@ def main():
     fig.grdimage(grd_topo, cmap=resource(
         ["cpt", "land_sea.cpt"]), shading="+d")
 
-    fig.plot(data=resource(
-        ["Plate_Boundaries", "nuvel1_boundaries"]), pen="2p,red")
+    # fig.plot(data=resource(
+    #     ["Plate_Boundaries", "nuvel1_boundaries"]), pen="2p,red")
 
     for sta in stations:
         fig.plot(x=stations[sta][0], y=stations[sta][1],
