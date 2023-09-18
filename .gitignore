@@ -129,3 +129,5 @@ dmypy.json
 .pyre/
 
 phasenettf/data/
+.DS_Store
+*csv

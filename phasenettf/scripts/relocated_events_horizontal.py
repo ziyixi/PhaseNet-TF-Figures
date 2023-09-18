@@ -15,7 +15,9 @@ from phasenettf.utils.slice import extend_line
 REGION = [-184, -172, -24, -14]
 TRENCH_FILE = resource(["trench", "trench.gmt"], normal_path=True, check=True)
 CATALOG_FILE = resource(
-    ["catalog", "tomoDD.all_months_threshold0.reloc"], normal_path=True, check=True
+    ["catalog", "manual_picks", "manual_phase_picks.association_filtered.csv"],
+    normal_path=True,
+    check=True,
 )
 LINES = [
     [-179, -16, -173, -19],
@@ -27,9 +29,21 @@ LINES = [
 LENGTH = 7
 
 
+# def load_catalog():
+#     data = pd.read_csv(
+#         CATALOG_FILE, sep="\s+", usecols=[1, 2, 3], names=["lat", "lon", "depth"]
+#     )
+#     data = data[data["depth"] > 0]
+#     return data
+
+
 def load_catalog():
     data = pd.read_csv(
-        CATALOG_FILE, sep="\s+", usecols=[1, 2, 3], names=["lat", "lon", "depth"]
+        CATALOG_FILE,
+        sep=",",
+        usecols=[0, 1, 2, 3],
+        names=["event_id", "lat", "lon", "depth"],
+        skiprows=1,
     )
     data = data[data["depth"] > 0]
     return data
@@ -101,4 +115,4 @@ def main():
 
     plot_map(fig)
 
-    save_path(fig, "relocated_all_months_threshold0_horizontal", suffix="pdf")
+    save_path(fig, "manual_picks.manual_phase_picks.association_filtered", suffix="pdf")
