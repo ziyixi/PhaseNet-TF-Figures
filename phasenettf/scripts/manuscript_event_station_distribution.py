@@ -37,6 +37,7 @@ def main():
     plot_stations(fig)
     plot_events(fig)
     plot_inset(fig)
+    plot_plate_boundary(fig)
 
     save_path(fig, Path(__file__).resolve().stem)
 
@@ -174,7 +175,7 @@ def plot_events(fig: pygmt.Figure):
         resource(["catalog", "tonga_catalog_updated_2023_0426.csv"], normal_path=True),
         parse_dates=["time"],
     )
-    pygmt.makecpt(cmap="oslo", series=[0, 700, 1], continuous=True, reverse=True)
+    pygmt.makecpt(cmap="jet", series=[0, 700, 1], continuous=True, reverse=True)
     fig.plot(
         x=df_events["longitude"],
         y=df_events["latitude"],
@@ -184,3 +185,34 @@ def plot_events(fig: pygmt.Figure):
     )
     # plot the colorbar to the right of the map
     fig.colorbar(position="JMR+o0.2c/0c+w5i/0.3i", frame=["x+lDepth (km)"])
+
+
+def plot_plate_boundary(fig: pygmt.Figure):
+    x_lists, y_lists = load_bord_plate_boundaries()
+    for x, y in zip(x_lists, y_lists):
+        fig.plot(
+            x=x,
+            y=y,
+            pen="3p,magenta",
+        )
+
+
+def load_bord_plate_boundaries():
+    """
+    Load the plate boundaries from the bord's plate boundaries file
+    """
+    x_lists = [[]]
+    y_lists = [[]]
+    with open(
+        resource(["Plate_Boundaries", "bird_2002_boundaries"], normal_path=True)
+    ) as f:
+        for line in f.readlines():
+            if line.startswith(" "):
+                x_lists[-1].append(float(line.split(",")[0]))
+                y_lists[-1].append(float(line.split(",")[1]))
+            elif line.startswith("*"):
+                x_lists.append([])
+                y_lists.append([])
+    x_lists = [x for x in x_lists if len(x) > 1]
+    y_lists = [y for y in y_lists if len(y) > 1]
+    return x_lists, y_lists

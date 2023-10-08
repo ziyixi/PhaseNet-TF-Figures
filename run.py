@@ -29,6 +29,14 @@ scripts_mapper = {
     "ptf_example_with_ps": manuscript_ptf_example_with_ps_main,
     "horizontal_top100km": horizontal_top100km_main,
     "vertical_cross_section_zoom": vertical_cross_section_zoom_main,
+    "manuscript_gamma1d_example": manuscript_gamma1d_example_main,
+    "manuscript_continuous_waveform": manuscript_continuous_waveform_main,
+    "manuscript_compare_models_residuals": manuscript_compare_models_residuals_main,
+    "manuscript_compare_gamma_gamma1d_residuals": manuscript_compare_gamma_gamma1d_residuals_main,
+    "manuscript_vertical_crosssections_0to700km": manuscript_vertical_crosssections_0to700km_main,
+    "manuscript_vertical_crosssections_0to300km": manuscript_vertical_crosssections_0to300km_main,
+    "manuscript_vertical_crosssections_300to700km": manuscript_vertical_crosssections_300to700km_main,
+    "manuscript_horizontal_continious_300to400km": manuscript_horizontal_continious_300to400km_main,
 }
 
 

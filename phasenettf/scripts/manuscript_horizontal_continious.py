@@ -56,7 +56,7 @@ def main():
         plot_earth_relief(fig, ipanel)
         plot_events_map(fig, catalogs[ipanel])
 
-    pygmt.makecpt(cmap="jet", series=[0, 700, 1], continuous=True, reverse=False)
+    pygmt.makecpt(cmap="jet", series=[0, 700, 1], continuous=True, reverse=True)
     fig.colorbar(
         position="JBC+w5i/0.8c+h+o-2i/1.8c",
         box=False,
@@ -166,7 +166,7 @@ def plot_earth_relief(fig: pygmt.Figure, ipanel: int):
 
 
 def plot_events_map(fig: pygmt.Figure, df_events: pd.DataFrame):
-    pygmt.makecpt(cmap="jet", series=[0, 700, 1], continuous=True, reverse=False)
+    pygmt.makecpt(cmap="jet", series=[0, 700, 1], continuous=True, reverse=True)
     fig.plot(
         x=df_events["longitude"],
         y=df_events["latitude"],

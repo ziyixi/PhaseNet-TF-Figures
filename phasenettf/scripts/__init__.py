@@ -55,6 +55,26 @@ from .manuscript_histogram_continious_catalog import (
 from .ptf_example_with_ps import main as manuscript_ptf_example_with_ps_main
 from .horizontal_top100km import main as horizontal_top100km_main
 from .vertical_cross_section_zoom import main as vertical_cross_section_zoom_main
+from .manuscript_gamma1d_example import main as manuscript_gamma1d_example_main
+from .manuscript_continuous_waveform import main as manuscript_continuous_waveform_main
+from .manuscript_compare_models_residuals import (
+    main as manuscript_compare_models_residuals_main,
+)
+from .manuscript_compare_gamma_gamma1d_residuals import (
+    main as manuscript_compare_gamma_gamma1d_residuals_main,
+)
+from .manuscript_vertical_crosssections_0to700km import (
+    main as manuscript_vertical_crosssections_0to700km_main,
+)
+from .manuscript_vertical_crosssections_0to300km import (
+    main as manuscript_vertical_crosssections_0to300km_main,
+)
+from .manuscript_vertical_crosssections_300to700km import (
+    main as manuscript_vertical_crosssections_300to700km_main,
+)
+from .manuscript_horizontal_continious_300to400km import (
+    main as manuscript_horizontal_continious_300to400km_main,
+)
 
 __all__ = [
     "station_distribution_main",
@@ -84,4 +104,12 @@ __all__ = [
     "manuscript_ptf_example_with_ps_main",
     "horizontal_top100km_main",
     "vertical_cross_section_zoom_main",
+    "manuscript_gamma1d_example_main",
+    "manuscript_continuous_waveform_main",
+    "manuscript_compare_models_residuals_main",
+    "manuscript_compare_gamma_gamma1d_residuals_main",
+    "manuscript_vertical_crosssections_0to700km_main",
+    "manuscript_vertical_crosssections_0to300km_main",
+    "manuscript_vertical_crosssections_300to700km_main",
+    "manuscript_horizontal_continious_300to400km_main",
 ]
