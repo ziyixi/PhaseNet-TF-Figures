@@ -12,12 +12,13 @@ import xarray as xr
 from phasenettf import resource, save_path
 
 # * global settings
-BASE_XSHIFTS = [0.6, 4.3, -4.3, 4.3]
-BASE_YSHIFTS = [6.0, 0, -4.3, 0]
+BASE_XSHIFTS = [0.6, 4.3, 4.3, -8.6, 4.3]
+BASE_YSHIFTS = [6.0, 0, 0, -4.3, 0]
 FRAMES = [
     ["Wsen", "xaf+lLongitude (degree)", "yaf+lLatitude (degree)"],
     ["wsen", "xaf+lLongitude (degree)", "yaf+lLatitude (degree)"],
-    ["WSen", "xaf+lLongitude (degree)", "yaf+lLatitude (degree)"],
+    ["wSen", "xaf+lLongitude (degree)", "yaf+lLatitude (degree)"],
+    ["Wsen", "xaf+lLongitude (degree)", "yaf+lLatitude (degree)"],
     ["wSen", "xaf+lLongitude (degree)", "yaf+lLatitude (degree)"],
 ]
 LABELS = [
@@ -25,6 +26,7 @@ LABELS = [
     "(b) Associated (Iteration 1)",
     "(c) Relocated (Iteration 1)",
     "(d) Semi-supervised (Iteration 2)",
+    "(e) Semi-supervised (Iteration 3)",
 ]
 
 
@@ -58,7 +60,7 @@ def main():
 
     pygmt.makecpt(cmap="jet", series=[0, 700, 1], continuous=True, reverse=True)
     fig.colorbar(
-        position="JBC+w5i/0.8c+h+o-2i/1.8c",
+        position="JBC+w5i/0.8c+h+o0i/1.8c",
         box=False,
         frame=["a0.5f", f'"+LDepth (km)"'],
         scale=1,
@@ -126,8 +128,14 @@ def load_catalog():
         resource(["catalog", "continious_semi.csv"], normal_path=True),
         usecols=[1, 2, 3],
     )
-    catalogs = [reference_df, associated_df, bootstrapped_df, semi_df]
 
+    # * load semi-supervised iteration 3 catalog
+    iter3_df = pd.read_csv(
+        resource(["catalog", "continuous_v3.csv"], normal_path=True),
+        usecols=[1, 2, 3],
+    )
+
+    catalogs = [reference_df, associated_df, bootstrapped_df, semi_df, iter3_df]
     return catalogs
 
 

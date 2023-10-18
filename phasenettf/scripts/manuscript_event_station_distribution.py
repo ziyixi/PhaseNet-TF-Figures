@@ -37,7 +37,8 @@ def main():
     plot_stations(fig)
     plot_events(fig)
     plot_inset(fig)
-    plot_plate_boundary(fig)
+    # plot_plate_boundary(fig)
+    plot_arrow(fig)
 
     save_path(fig, Path(__file__).resolve().stem)
 
@@ -52,16 +53,17 @@ def plot_earth_relief(fig: pygmt.Figure):
     fig.grdcontour(
         grd_topo,
         interval=1000,
-        pen="0.8p,black",
+        pen="1.6p,black",
         limit="-10000/-7000",
     )
     # plot only -1000m contour
     fig.grdcontour(
         grd_topo,
         interval=1000,
-        pen="0.5p,black",
+        pen="1p,black",
         limit="-1100/-1000",
     )
+    fig.coast(shorelines="1p,black", resolution="i")
 
 
 def plot_text(fig: pygmt.Figure):
@@ -73,13 +75,13 @@ def plot_text(fig: pygmt.Figure):
             "font": "18p,Helvetica-Bold,black",
             "angle": 65,
         },
-        {
-            "text": "Tonga Ridge",
-            "x": -174.5,
-            "y": -21.2,
-            "font": "18p,Helvetica-Bold,black",
-            "angle": 67,
-        },
+        # {
+        #     "text": "Tonga Ridge",
+        #     "x": -174.5,
+        #     "y": -21.2,
+        #     "font": "18p,Helvetica-Bold,black",
+        #     "angle": 67,
+        # },
         {
             "text": "Lau Basin",
             "x": -176,
@@ -87,13 +89,13 @@ def plot_text(fig: pygmt.Figure):
             "font": "18p,Helvetica-Bold,black",
             "angle": 65,
         },
-        {
-            "text": "Lau Ridge",
-            "x": -179,
-            "y": -19,
-            "font": "18p,Helvetica-Bold,black",
-            "angle": 65,
-        },
+        # {
+        #     "text": "Lau Ridge",
+        #     "x": -179,
+        #     "y": -19,
+        #     "font": "18p,Helvetica-Bold,black",
+        #     "angle": 65,
+        # },
         {
             "text": "Fiji",
             "x": 178,
@@ -216,3 +218,23 @@ def load_bord_plate_boundaries():
     x_lists = [x for x in x_lists if len(x) > 1]
     y_lists = [y for y in y_lists if len(y) > 1]
     return x_lists, y_lists
+
+
+def plot_arrow(fig):
+    style = "V1c+e+h0"
+    fig.plot(
+        x=[-177],
+        y=[-23],
+        style=style,
+        direction=([110], [2]),
+        pen="4p,black",
+        fill="black",
+    )
+    fig.text(
+        x=-177.2,
+        y=-22.7,
+        text="164 mm/year",
+        font="14p,Helvetica-Bold,black",
+        justify="LM",
+        angle=-10,
+    )

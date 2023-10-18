@@ -75,6 +75,14 @@ from .manuscript_vertical_crosssections_300to700km import (
 from .manuscript_horizontal_continious_300to400km import (
     main as manuscript_horizontal_continious_300to400km_main,
 )
+from .manuscirpt_final_catalog_plot import main as manuscirpt_final_catalog_plot_main
+from .manuscirpt_final_catalog_ehb_plot import (
+    main as manuscirpt_final_catalog_ehb_plot_main,
+)
+from .manuscript_vertical_continuous import main as manuscript_vertical_continuous_main
+from .manuscript_compare_final_ehb_catalogs import (
+    main as manuscript_compare_final_ehb_catalogs_main,
+)
 
 __all__ = [
     "station_distribution_main",
@@ -112,4 +120,8 @@ __all__ = [
     "manuscript_vertical_crosssections_0to300km_main",
     "manuscript_vertical_crosssections_300to700km_main",
     "manuscript_horizontal_continious_300to400km_main",
+    "manuscirpt_final_catalog_plot_main",
+    "manuscirpt_final_catalog_ehb_plot_main",
+    "manuscript_vertical_continuous_main",
+    "manuscript_compare_final_ehb_catalogs_main",
 ]

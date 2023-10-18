@@ -54,6 +54,14 @@ WAVEFORMS = [
     # ["2_52327", "B05W"],
     # ["4_54675", "A14W"],
 ]
+
+TEXT_INFO = [
+    "2010-02-17 06:32:08.00 21.56S,178.18W 452.8km C11W",
+    "2010-03-07 23:30:23.92 21.94S,175.70W 148.1km NMKA",
+    "2010-07-11 10:29:21.54 25.11S,179.80W 655.2km FONI",
+    "2010-09-26 17:20:38.87 20.78S,178.39W 618.2km A01",
+]
+
 MAX_CLAMP = 2
 
 
@@ -115,9 +123,9 @@ def main():
                             font="30p,Helvetica-Bold,black",
                         )
                         fig.text(
-                            x=90,
+                            x=55,
                             y=0.75,
-                            text=f"{WAVEFORMS[iplot][0]}.{WAVEFORMS[iplot][1]}",
+                            text=TEXT_INFO[iplot],
                             font="18p,Helvetica-Bold,black",
                         )
             pygmt.makecpt(
@@ -228,7 +236,7 @@ def load_waveform_spectrogram_prediction(event_id, station_id):
         "sensitivity": sensitivity,
         "return_prediction": return_prediction,
     }
-    url = "http://0.0.0.0:8080/api/predict"
+    url = "http://0.0.0.0:8081/api/predict"
     headers = {"Content-Type": "application/json"}
     response = httpx.post(url, headers=headers, json=request_body, timeout=6000)
     if response.status_code == 200:

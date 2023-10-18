@@ -43,8 +43,8 @@ EXAMPLE_PREDICTION_2 = resource(
     ],
     normal_path=True,
 )
-TITLE_1 = "YL.B12 2010-04-07 0h to 1h"
-TITLE_2 = "Z1.VAVP 2010-04-07 0h to 1h"
+TITLE_1 = "YL.B12 2010-04-07 00:00:00 to 01:00:00"
+TITLE_2 = "Z1.VAVP 2010-04-07 00:00:00 to 01:00:00"
 MAX_CLAMP = 0.5
 
 

@@ -4,8 +4,8 @@ from phasenettf import resource, save_path
 import pygmt
 from pathlib import Path
 
-TIME_START = pd.Timestamp("2010-02-01T00:00:00")
-TIME_END = pd.Timestamp("2010-02-01T01:00:00")
+TIME_START = pd.Timestamp("2010-09-15T13:43:00")
+TIME_END = pd.Timestamp("2010-09-15T13:53:00")
 
 
 def main():
@@ -14,13 +14,13 @@ def main():
     # for each unique event_index, assign a unique color in GMT
     colors_list = [
         "red3",
-        "green3",
-        "blue3",
+        "magenta3",
+        "cyan3",
         "yellow3",
         "purple3",
+        "green3",
+        "blue3",
         "orange3",
-        "cyan3",
-        "magenta3",
         "gray3",
         "brown3",
         # more colors below
@@ -51,20 +51,22 @@ def main():
     )
     # * latitude plot
     fig.basemap(
-        region=[TIME_START, TIME_END, -23, -16],
+        region=[TIME_START, TIME_END, -26, -13],
         projection="X8i/2i",
         frame=[
             "WSen",
-            f'xa10Mf+l{str(TIME_START).split(" ")[0]}',
+            f'xa2Mf+l{str(TIME_START).split(" ")[0]}',
             "yaf+lLatitude (degree)",
         ],
     )
     for event_index in df["event_index"].unique():
+        if event_index == 34127:
+            continue
         df_event = df[df["event_index"] == event_index]
         fig.plot(
             x=df_event.time,
             y=df_event.lat,
-            style="c0.2c",
+            style="c0.15c",
             fill=colors[event_index],
         )
         # df_catalog has columns: time, longitude, latitude, depth, event_index
@@ -73,7 +75,7 @@ def main():
         fig.plot(
             x=df_catalog_event["time"],
             y=df_catalog_event["latitude"],
-            style=f"+1c",
+            style=f"+2c",
             fill=colors[event_index],
             pen=f"1p,{colors[event_index]}",
         )
@@ -81,16 +83,18 @@ def main():
     # * longitude plot
     fig.shift_origin(yshift="h+0.2i")
     fig.basemap(
-        region=[TIME_START, TIME_END, 174, 188],
+        region=[TIME_START, TIME_END, 171, 191],
         projection="X8i/2i",
-        frame=["Wsen", "xa10Mf", "yaf+lLongitude (degree)"],
+        frame=["Wsen", "xa2Mf", "yaf+lLongitude (degree)"],
     )
     for event_index in df["event_index"].unique():
+        if event_index == 34127:
+            continue
         df_event = df[df["event_index"] == event_index]
         fig.plot(
             x=df_event.time,
             y=df_event.lon,
-            style="c0.2c",
+            style="c0.15c",
             fill=colors[event_index],
         )
         # df_catalog has columns: time, longitude, latitude, depth, event_index
@@ -99,7 +103,7 @@ def main():
         fig.plot(
             x=df_catalog_event["time"],
             y=df_catalog_event["longitude"],
-            style=f"+1c",
+            style=f"+2c",
             fill=colors[event_index],
             pen=f"1p,{colors[event_index]}",
         )

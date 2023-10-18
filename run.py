@@ -37,6 +37,10 @@ scripts_mapper = {
     "manuscript_vertical_crosssections_0to300km": manuscript_vertical_crosssections_0to300km_main,
     "manuscript_vertical_crosssections_300to700km": manuscript_vertical_crosssections_300to700km_main,
     "manuscript_horizontal_continious_300to400km": manuscript_horizontal_continious_300to400km_main,
+    "manuscirpt_final_catalog_plot": manuscirpt_final_catalog_plot_main,
+    "manuscirpt_final_catalog_ehb_plot": manuscirpt_final_catalog_ehb_plot_main,
+    "manuscript_vertical_continuous": manuscript_vertical_continuous_main,
+    "manuscript_compare_final_ehb_catalogs": manuscript_compare_final_ehb_catalogs_main,
 }
 
 
