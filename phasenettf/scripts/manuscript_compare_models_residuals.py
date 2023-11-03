@@ -8,17 +8,18 @@ import pygmt
 
 from phasenettf import resource, save_path
 from typing import List
+import numpy as np
 
 TITLES = [
-    "PhaseNet-TF@^(iteration 1)",
-    "PhaseNet-TF@^(iteration 2)",
-    "PhaseNet-TF@^(iteration 3)",
+    "PhaseNet-TF@^(Iteration #1)",
+    "PhaseNet-TF@^(Iteration #2)",
+    "PhaseNet-TF@^(Iteration #3)",
     "PhaseNet@^Tonga model",
     "PhaseNet@^origional model",
 ]
 LABELS = [
-    ["a", "b", "c", "d", "e"],
-    ["f", "g", "h", "i", "j"],
+    ["a", "c", "e", "g", "i"],
+    ["b", "d", "f", "h", "j"],
 ]
 
 
@@ -85,18 +86,28 @@ def plot_time_diff(fig, diff_list: List[float], irow: int, icol: int, phase_type
         region=[-1.0, 1.0, 0, 10000] if phase_type == "P" else [-1.0, 1.0, 0, 2500],
         frame=[f"+t{TITLES[icol]}", "xa0.4f+lTime Difference (s)", "yaf+lCount"]
         if phase_type == "P"
-        else ["xa0.4f+lTime residuals (s)", "yaf+lCount"],
+        else ["xa0.4f+lArrival-time residual (s)", "yaf+lCount"],
     )
+    print(irow, icol, np.std(diff_list))
     fig.histogram(
         data=diff_list,
         series=0.05,
         pen="1p,black",
         center=True,
     )
-    if icol == 4:
-        fig.text(
-            position="TR", text=f"{phase_type} Wave", font="14p,Helvetica-Bold,black"
-        )
+    fig.text(position="TR", text=f"{phase_type} Wave", font="14p,Helvetica-Bold,black")
+    fig.text(
+        position="TR",
+        text=f"mean: {np.mean(diff_list):.2f} s",
+        font="14p,Helvetica,red",
+        offset="j0.15i/0.2i",
+    )
+    fig.text(
+        position="TR",
+        text=f"std: {np.std(diff_list):.2f} s",
+        font="14p,Helvetica,red",
+        offset="j0.2i/0.4i",
+    )
     fig.text(
         position="TL", text=f"({LABELS[irow][icol]})", font="14p,Helvetica-Bold,black"
     )

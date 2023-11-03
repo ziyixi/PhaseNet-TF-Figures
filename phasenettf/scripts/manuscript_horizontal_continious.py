@@ -24,9 +24,9 @@ FRAMES = [
 LABELS = [
     "(a) Reference",
     "(b) Associated (Iteration 1)",
-    "(c) Relocated (Iteration 1)",
-    "(d) Semi-supervised (Iteration 2)",
-    "(e) Semi-supervised (Iteration 3)",
+    "(c) Iteration #1",
+    "(d) Iteration #2",
+    "(e) Iteration #3",
 ]
 
 
@@ -148,16 +148,17 @@ def plot_earth_relief(fig: pygmt.Figure, ipanel: int):
     fig.grdcontour(
         grd_topo,
         interval=1000,
-        pen="0.3p,black",
+        pen="1.6p,gray",
         limit="-10000/-7000",
     )
     # plot only -1000m contour
     fig.grdcontour(
         grd_topo,
         interval=1000,
-        pen="0.1p,black",
+        pen="1p,gray",
         limit="-1100/-1000",
     )
+    fig.coast(land="gray")
     # plot text on the top left corner
     fig.text(
         # x=-183.4,
@@ -167,10 +168,10 @@ def plot_earth_relief(fig: pygmt.Figure, ipanel: int):
         font="18p,Helvetica-Bold,black",
     )
     # plot back-arc spreading centers
-    fig.plot(
-        data=resource(["symbols", "lau_neovolcanic.xy"], normal_path=True),
-        pen="2p,magenta",
-    )
+    # fig.plot(
+    #     data=resource(["symbols", "lau_neovolcanic.xy"], normal_path=True),
+    #     pen="2p,magenta",
+    # )
 
 
 def plot_events_map(fig: pygmt.Figure, df_events: pd.DataFrame):

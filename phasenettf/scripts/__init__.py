@@ -83,6 +83,9 @@ from .manuscript_vertical_continuous import main as manuscript_vertical_continuo
 from .manuscript_compare_final_ehb_catalogs import (
     main as manuscript_compare_final_ehb_catalogs_main,
 )
+from .manualscript_final_catalog_three_columns_version import (
+    main as manualscript_final_catalog_three_columns_version_main,
+)
 
 __all__ = [
     "station_distribution_main",
@@ -124,4 +127,5 @@ __all__ = [
     "manuscirpt_final_catalog_ehb_plot_main",
     "manuscript_vertical_continuous_main",
     "manuscript_compare_final_ehb_catalogs_main",
+    "manualscript_final_catalog_three_columns_version_main",
 ]

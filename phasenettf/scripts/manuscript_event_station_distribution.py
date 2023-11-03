@@ -34,8 +34,8 @@ def main():
 
     plot_earth_relief(fig)
     plot_text(fig)
-    plot_stations(fig)
     plot_events(fig)
+    plot_stations(fig)
     plot_inset(fig)
     # plot_plate_boundary(fig)
     plot_arrow(fig)
@@ -53,17 +53,17 @@ def plot_earth_relief(fig: pygmt.Figure):
     fig.grdcontour(
         grd_topo,
         interval=1000,
-        pen="1.6p,black",
+        pen="1.6p,gray",
         limit="-10000/-7000",
     )
     # plot only -1000m contour
     fig.grdcontour(
         grd_topo,
         interval=1000,
-        pen="1p,black",
+        pen="1p,gray",
         limit="-1100/-1000",
     )
-    fig.coast(shorelines="1p,black", resolution="i")
+    fig.coast(land="gray")
 
 
 def plot_text(fig: pygmt.Figure):
@@ -133,6 +133,7 @@ def plot_stations(fig: pygmt.Figure):
         style="i0.2c",
         pen="2p,black",
         label="YL",
+        fill="black",
     )
     fig.plot(
         x=station_df[station_df["net"] == "Z1"]["lon"],
@@ -140,13 +141,15 @@ def plot_stations(fig: pygmt.Figure):
         style="t0.3c",
         pen="2p,black",
         label="Z1",
+        fill="black",
     )
     fig.plot(
         x=station_df[station_df["net"] == "II"]["lon"],
         y=station_df[station_df["net"] == "II"]["lat"],
         style="s0.3c",
         pen="2p,black",
-        label="Z1",
+        label="II",
+        fill="black",
     )
     # plot legend in the bottom right corner
     fig.legend(
@@ -186,7 +189,7 @@ def plot_events(fig: pygmt.Figure):
         cmap=True,
     )
     # plot the colorbar to the right of the map
-    fig.colorbar(position="JMR+o0.2c/0c+w5i/0.3i", frame=["x+lDepth (km)"])
+    fig.colorbar(position="JMR+o0.2c/0c+w5i/0.3i", frame=["x+lEarthquake depth (km)"])
 
 
 def plot_plate_boundary(fig: pygmt.Figure):
@@ -223,18 +226,18 @@ def load_bord_plate_boundaries():
 def plot_arrow(fig):
     style = "V1c+e+h0"
     fig.plot(
-        x=[-177],
-        y=[-23],
+        x=[-173.5],
+        y=[-25],
         style=style,
-        direction=([110], [2]),
+        direction=([-65], [2]),
         pen="4p,black",
         fill="black",
     )
-    fig.text(
-        x=-177.2,
-        y=-22.7,
-        text="164 mm/year",
-        font="14p,Helvetica-Bold,black",
-        justify="LM",
-        angle=-10,
-    )
+    # fig.text(
+    #     x=-177.2,
+    #     y=-22.7,
+    #     text="164 mm/year",
+    #     font="14p,Helvetica-Bold,black",
+    #     justify="LM",
+    #     angle=-10,
+    # )

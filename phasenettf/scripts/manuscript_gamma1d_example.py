@@ -63,12 +63,22 @@ def main():
         if event_index == 34127:
             continue
         df_event = df[df["event_index"] == event_index]
-        fig.plot(
-            x=df_event.time,
-            y=df_event.lat,
-            style="c0.15c",
-            fill=colors[event_index],
-        )
+        df_event_p = df_event[df_event["type"] == "p"]
+        df_event_s = df_event[df_event["type"] == "s"]
+        if len(df_event_p) > 0:
+            fig.plot(
+                x=df_event_p.time,
+                y=df_event_p.lat,
+                style="c0.15c",
+                fill=colors[event_index],
+            )
+        if len(df_event_s) > 0:
+            fig.plot(
+                x=df_event_s.time,
+                y=df_event_s.lat,
+                style="t0.2c",
+                fill=colors[event_index],
+            )
         # df_catalog has columns: time, longitude, latitude, depth, event_index
         # plot the catalog time and position
         df_catalog_event = df_catalog[df_catalog["event_index"] == event_index]
@@ -79,6 +89,10 @@ def main():
             fill=colors[event_index],
             pen=f"1p,{colors[event_index]}",
         )
+        fig.plot(x="1900-01-01", y=0, style="c0.15c", fill="black", label="P")
+        fig.plot(x="1900-01-01", y=0, style="t0.2c", fill="black", label="S")
+        fig.plot(x="1900-01-01", y=0, style="+0.3c", fill="black", label="Event")
+        fig.legend(position="JTR+jTR+o0.2c", box="+gwhite+p1p")
 
     # * longitude plot
     fig.shift_origin(yshift="h+0.2i")
@@ -91,12 +105,22 @@ def main():
         if event_index == 34127:
             continue
         df_event = df[df["event_index"] == event_index]
-        fig.plot(
-            x=df_event.time,
-            y=df_event.lon,
-            style="c0.15c",
-            fill=colors[event_index],
-        )
+        df_event_p = df_event[df_event["type"] == "p"]
+        df_event_s = df_event[df_event["type"] == "s"]
+        if len(df_event_p) > 0:
+            fig.plot(
+                x=df_event_p.time,
+                y=df_event_p.lon,
+                style="c0.15c",
+                fill=colors[event_index],
+            )
+        if len(df_event_s) > 0:
+            fig.plot(
+                x=df_event_s.time,
+                y=df_event_s.lon,
+                style="t0.2c",
+                fill=colors[event_index],
+            )
         # df_catalog has columns: time, longitude, latitude, depth, event_index
         # plot the catalog time and position
         df_catalog_event = df_catalog[df_catalog["event_index"] == event_index]
@@ -107,6 +131,10 @@ def main():
             fill=colors[event_index],
             pen=f"1p,{colors[event_index]}",
         )
+        fig.plot(x="1900-01-01", y=0, style="c0.15c", fill="black", label="P")
+        fig.plot(x="1900-01-01", y=0, style="t0.2c", fill="black", label="S")
+        fig.plot(x="1900-01-01", y=0, style="+0.3c", fill="black", label="Event")
+        fig.legend(position="JTR+jTR+o0.2c", box="+gwhite+p1p")
 
     save_path(fig, Path(__file__).resolve().stem)
 

@@ -14,10 +14,10 @@ DEP_START = 0
 DEP_END = 700
 LABELS = [
     "(a) Reference",
-    "(b) Associated (Iteration 1)",
-    "(c) Relocated (Iteration 1)",
-    "(d) Semi-supervised (Iteration 2)",
-    "(e) Semi-supervised (Iteration 3)",
+    "(b) Associated (Iteration #1)",
+    "(c) Iteration #1",
+    "(d) Iteration #2",
+    "(e) Iteration #3",
 ]
 
 
@@ -87,6 +87,7 @@ def main():
                     x=np.linspace(0, LENGTH * degrees2kilometers(1), len(slab_deps)),
                     y=slab_deps,
                     pen="1.5p,magenta",
+                    label="Slab2",
                 )
 
                 # plot slab1
@@ -95,6 +96,13 @@ def main():
                     x=np.linspace(0, LENGTH * degrees2kilometers(1), len(slab1_deps)),
                     y=slab1_deps,
                     pen="1.5p,red",
+                    label="Slab 1.0",
+                )
+
+                fig.legend(
+                    position="jBR+o0.2c/0.2c",
+                    # box="+gwhite+p1p",
+                    transparency=50,
                 )
                 # text at TR corner
                 fig.text(
@@ -226,14 +234,14 @@ def plot_earth_relief(fig: pygmt.Figure):
     fig.grdcontour(
         grd_topo,
         interval=1000,
-        pen="0.3p,black",
+        pen="1.6p,black",
         limit="-10000/-7000",
     )
     # plot only -1000m contour
     fig.grdcontour(
         grd_topo,
         interval=1000,
-        pen="0.1p,black",
+        pen="1p,black",
         limit="-1100/-1000",
     )
     # plot text on the top left corner
@@ -250,7 +258,7 @@ def plot_earth_relief(fig: pygmt.Figure):
     #     data=resource(["symbols", "lau_neovolcanic.xy"], normal_path=True),
     #     pen="2p,magenta",
     # )
-    fig.coast(shorelines="1p,black", resolution="i")
+    fig.coast(land="gray")
 
 
 def plot_text(fig: pygmt.Figure):

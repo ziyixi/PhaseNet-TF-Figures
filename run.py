@@ -41,6 +41,7 @@ scripts_mapper = {
     "manuscirpt_final_catalog_ehb_plot": manuscirpt_final_catalog_ehb_plot_main,
     "manuscript_vertical_continuous": manuscript_vertical_continuous_main,
     "manuscript_compare_final_ehb_catalogs": manuscript_compare_final_ehb_catalogs_main,
+    "manualscript_final_catalog_three_columns_version": manualscript_final_catalog_three_columns_version_main,
 }
 
 

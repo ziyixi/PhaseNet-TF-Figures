@@ -67,7 +67,7 @@ def plot_time_diff(fig, diff_list: List[float], irow: int, icol: int):
     fig.basemap(
         projection="X?i/?i",
         region=[-30.0, 30.0, 0, 400],
-        frame=[f"+t{TITLES[icol]}", "xaf+lTime Residuals (s)", "yaf+lCount"],
+        frame=[f"+t{TITLES[icol]}", "xaf+lOrigin-time Residual (s)", "yaf+lCount"],
     )
     fig.histogram(
         data=diff_list,
@@ -84,7 +84,7 @@ def plot_depth_diff(fig, diff_list: List[float], irow: int, icol: int):
     fig.basemap(
         projection="X?i/?i",
         region=[-200.0, 200.0, 0, 250],
-        frame=["x80f+lDepth Residuals (km)", "yaf+lCount"],
+        frame=["x80f+lDepth residual (km)", "yaf+lCount"],
     )
     fig.histogram(
         data=diff_list,
